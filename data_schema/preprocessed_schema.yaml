@@ -1,0 +1,84 @@
+columns:
+  months_as_customer: int
+  age: int
+  policy_state: object
+  policy_csl: object
+  policy_deductable: int
+  policy_annual_premium: float
+  umbrella_limit: int
+  insured_sex: object
+  insured_education_level: object
+  insured_occupation: object
+  insured_hobbies: object
+  insured_relationship: object
+  capital-gains: int
+  capital-loss: int
+  incident_type: object
+  collision_type: object
+  incident_severity: object
+  authorities_contacted: object
+  incident_state: object
+  incident_city: object
+  incident_hour_of_the_day: int
+  number_of_vehicles_involved: int
+  property_damage: object
+  bodily_injuries: int
+  witnesses: int
+  police_report_available: object
+  injury_claim: int
+  property_claim: int
+  vehicle_claim: int
+  auto_make: object
+  auto_model: object
+  auto_year: int
+  policy_bind_year: int
+  policy_bind_month: int
+  policy_bind_day: int
+  incident_month: int
+  incident_day: int
+  fraud_reported: object
+
+numerical_columns:
+  - months_as_customer
+  - age
+  - policy_deductable
+  - policy_annual_premium
+  - umbrella_limit
+  - capital-gains
+  - capital-loss
+  - incident_hour_of_the_day
+  - number_of_vehicles_involved
+  - bodily_injuries
+  - witnesses
+  - injury_claim
+  - property_claim
+  - vehicle_claim
+  - auto_year
+  - policy_bind_year
+  - policy_bind_month
+  - policy_bind_day
+  - incident_month
+  - incident_day
+
+categorical_columns:
+  - policy_state
+  - policy_csl
+  - insured_sex
+  - insured_education_level
+  - insured_occupation
+  - insured_hobbies
+  - insured_relationship
+  - incident_type
+  - collision_type
+  - incident_severity
+  - authorities_contacted
+  - incident_state
+  - incident_city
+  - property_damage
+  - police_report_available
+  - auto_make
+  - auto_model
+  - fraud_reported
+
+target_column:
+  - fraud_reported
