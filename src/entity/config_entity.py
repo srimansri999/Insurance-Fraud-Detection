@@ -45,6 +45,10 @@ class DataTransformationConfig:
                                                         ,training_pipeline.TRAIN_FILE_NAME.replace("csv","npy"))
         self.transformed_test_file_path = os.path.join(self.transformed_valid_dir_name, training_pipeline.DATA_TRANSFORMATION_TRANSFORMED_DATA_DIR,
                                                        training_pipeline.TEST_FILE_NAME.replace("csv","npy"))
+        self.transformed_train_file_path_csv = os.path.join(self.transformed_valid_dir_name, training_pipeline.DATA_TRANSFORMATION_TRANSFORMED_DATA_DIR
+                                                        ,training_pipeline.TRAIN_FILE_NAME)
+        self.transformed_test_file_path_csv = os.path.join(self.transformed_valid_dir_name, training_pipeline.DATA_TRANSFORMATION_TRANSFORMED_DATA_DIR,
+                                                       training_pipeline.TEST_FILE_NAME)
         self.transformed_invalid_train_file_path = os.path.join(self.transformed_invalid_dir_name,training_pipeline.TRAIN_FILE_NAME )
         self.transformed_invalid_test_file_path = os.path.join(self.transformed_invalid_dir_name, training_pipeline.TEST_FILE_NAME)
         self.transformed_data_drift_report_path = os.path.join(self.data_transformation_dir, training_pipeline.DATA_TRANSFORMATION_DRIFT_REPORT_FILE_PATH,
@@ -52,6 +56,16 @@ class DataTransformationConfig:
         self.transformed_object_file_path = os.path.join(self.data_transformation_dir, training_pipeline.DATA_TRANSFORMATION_TRANSFORMED_OBJECT_DIR,
                                                          training_pipeline.DATA_TRANSFORMATION_TRANSFORMED_OBJECT_FILE_NAME)
         
+
+class ModelTrainerConfig:
+    def __init__(self, trainig_pipeline_config: TrainingPipelineConfig):
+        self.model_trainer_dir = os.path.join( trainig_pipeline_config.artifact_dir,training_pipeline.MODEL_TRAINER_DIR)
+        self.model_trainer_trained_model_file_path = os.path.join(self.model_trainer_dir, training_pipeline.MODEL_TRAINER_TRAINED_MODEL_DIR,
+                                                            training_pipeline.MODEL_TRAINER_TRAINED_MODEL_NAME)
+        self.expected_accuracy:float = training_pipeline.MODEL_TRAINER_EXPECTED_SCORE
+        self.overfitting_underfitting_threshold:float = training_pipeline.MODEL_TRAINER_OVER_FITTING_UNDER_FITTING_THRESHOLD
+        
+
 
 
 

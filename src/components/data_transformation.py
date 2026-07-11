@@ -153,12 +153,7 @@ class DataTransformation:
             
         except Exception as e:
             raise CustomException(e,sys)
-
-
-        
-
-    
-     
+            
     
     def initiate_data_transformation(self)-> DataTransformationArtifact:
         try:
@@ -239,6 +234,8 @@ class DataTransformation:
                     transformed_train_file_path=None,
                     transformed_test_file_path=None,
                     transformed_object_file_path=None,
+                    transformed_train_file_path_csv = None,
+                    transformed_test_file_path_csv = None,
                     transformed_invalid_train_file_path=transformed_invalid_train_file_path,
                     transformed_invalid_test_file_path=transformed_invalid_test_file_path,
                     transformed_drift_report_file_path=self.data_transformation_config.transformed_data_drift_report_path
@@ -267,6 +264,35 @@ class DataTransformation:
             transformed_input_train_feature = preprocessor.fit_transform(input_feature_train_df)
             transformed_input_test_feature = preprocessor.transform(input_feature_test_df)  
 
+            feature_names = preprocessor.get_feature_names_out()
+
+            train_transformed_df = pd.DataFrame(
+                transformed_input_train_feature,
+                columns=feature_names
+            )
+
+            test_transformed_df = pd.DataFrame(
+                transformed_input_test_feature,
+                columns=feature_names
+            )
+
+            train_transformed_df.to_csv(
+                self.data_transformation_config.transformed_train_file_path_csv,
+                index=False
+            )
+
+            test_transformed_df.to_csv(
+                self.data_transformation_config.transformed_test_file_path_csv,
+                index=False
+            )
+
+       
+            transformed_train_file_path_csv = self.data_transformation_config.transformed_train_file_path_csv
+            transformed_test_file_path_csv = self.data_transformation_config.transformed_test_file_path_csv
+
+
+
+
             preprocessor_object = preprocessor
             
             train_arr = np.c_[transformed_input_train_feature, np.array(target_feature_train_df)]
@@ -288,7 +314,9 @@ class DataTransformation:
                     transformed_object_file_path=self.data_transformation_config.transformed_object_file_path,
                     transformed_invalid_train_file_path=None,
                     transformed_invalid_test_file_path=None,
-                    transformed_drift_report_file_path=self.data_transformation_config.transformed_data_drift_report_path
+                    transformed_drift_report_file_path=self.data_transformation_config.transformed_data_drift_report_path,
+                    transformed_train_file_path_csv = transformed_train_file_path_csv,
+                    transformed_test_file_path_csv = transformed_test_file_path_csv
                 )
             logging.info("Saving transformed train array.")
             logging.info("Saving transformed test array.")

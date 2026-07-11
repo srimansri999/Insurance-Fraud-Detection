@@ -8,4 +8,5 @@ xgboost
 catboost
 Flask
 pyyaml
+mlflow==2.17.2
 # -e .

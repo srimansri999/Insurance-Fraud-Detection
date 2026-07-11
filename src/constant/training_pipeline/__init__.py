@@ -61,12 +61,22 @@ DATA_TRANSFORMATION_NUMERICAL_SCALING_COLUMNS: list = ['months_as_customer', 'ag
                                     'number_of_vehicles_involved','bodily_injuries','witnesses','injury_claim', 'property_claim',
                                     'vehicle_claim', 'auto_year', 'policy_bind_year', 'policy_bind_month',
                                         'policy_bind_day', 'incident_month','incident_day' ]
-DATA_TRANSFORMATION_EDUCATION_ORDER = [['High School','Associate' ,'College','Masters', 'JD', 'MD','PhD']]
+DATA_TRANSFORMATION_EDUCATION_ORDER: list = [['High School','Associate' ,'College','Masters', 'JD', 'MD','PhD']]
 
 
 DATA_TRANSAFORMATION_CATEGORICAL_COLUMNS = (DATA_TRANSFORMATION_ONE_HOT_ENCODING_COLUMNS + DATA_TRANSFORMATION_BINARAY_ENCODING_COLUMNS +
-    DATA_TRANSFORMATION_ORDINAL_ENCODING_COLUMNS)
+                                            DATA_TRANSFORMATION_ORDINAL_ENCODING_COLUMNS)
 
+
+'''
+Model Trainer Constants - All the variables starts with MODEL_TRAINER
+'''
+
+MODEL_TRAINER_DIR : str = 'model_trainer'
+MODEL_TRAINER_TRAINED_MODEL_DIR: str = 'trained_model'
+MODEL_TRAINER_TRAINED_MODEL_NAME: str = 'model.pkl'
+MODEL_TRAINER_EXPECTED_SCORE: float = 0.6
+MODEL_TRAINER_OVER_FITTING_UNDER_FITTING_THRESHOLD: float = 0.05
 
 
 
