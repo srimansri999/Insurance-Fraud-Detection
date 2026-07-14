@@ -18,13 +18,20 @@ from src.utils.ml_utils.model.estimator import InsuranceFraudModel
 import mlflow
 import mlflow.sklearn
 
+import matplotlib.pyplot as plt
+
+from sklearn.metrics import (
+    RocCurveDisplay,
+    ConfusionMatrixDisplay
+)
+
 
 class ModelTrainer:
     def __init__(self,model_trainer_config: ModelTrainerConfig,data_transformation_artifact: DataTransformationArtifact):
         try:
             self.model_trainer_config = model_trainer_config
             self.data_transformation_artifact = data_transformation_artifact
-            mlflow.set_tracking_uri("http://127.0.0.1:5000")
+            #mlflow.set_tracking_uri("file://" + os.path.abspath("mlruns"))
             mlflow.set_experiment("Insurance Fraud Detection")
 
         except Exception as e:
@@ -34,25 +41,81 @@ class ModelTrainer:
         best_model,
         best_model_name,
         train_metric,
-        test_metric
+        test_metric,
+        y_test,
+        y_test_pred,
+        y_test_prob
     ):
         try:
             print("Tracking URI:", mlflow.get_tracking_uri())
+
             with mlflow.start_run():
 
+                # -------------------------------
+                # Log Model Information
+                # -------------------------------
                 mlflow.log_param("best_model", best_model_name)
 
-                mlflow.log_metric("train_recall", train_metric.recall_score)
+                # Log all hyperparameters
+                mlflow.log_params(best_model.get_params())
+
+                # -------------------------------
+                # Training Metrics
+                # -------------------------------
+                mlflow.log_metric("train_accuracy", train_metric.accuracy_score)
                 mlflow.log_metric("train_precision", train_metric.precision_score)
-                mlflow.log_metric("train_f1", train_metric.f1_score)
+                mlflow.log_metric("train_recall", train_metric.recall_score)
+                mlflow.log_metric("train_f1_score", train_metric.f1_score)
                 mlflow.log_metric("train_auc", train_metric.auc_roc_score)
 
-                mlflow.log_metric("test_recall", test_metric.recall_score)
+                # -------------------------------
+                # Testing Metrics
+                # -------------------------------
+                mlflow.log_metric("test_accuracy", test_metric.accuracy_score)
                 mlflow.log_metric("test_precision", test_metric.precision_score)
-                mlflow.log_metric("test_f1", test_metric.f1_score)
+                mlflow.log_metric("test_recall", test_metric.recall_score)
+                mlflow.log_metric("test_f1_score", test_metric.f1_score)
                 mlflow.log_metric("test_auc", test_metric.auc_roc_score)
 
-                mlflow.sklearn.log_model(best_model, "model")
+                # -------------------------------
+                # Tags
+                # -------------------------------
+                mlflow.set_tag("Project", "Insurance Fraud Detection")
+                mlflow.set_tag("Developer", "Sriman Sri")
+                mlflow.set_tag("Algorithm", best_model_name)
+
+                # -------------------------------
+                # Save Model
+                # -------------------------------
+                mlflow.sklearn.log_model(
+                    sk_model=best_model,
+                    artifact_path="model"
+                )
+                # -------------------------------
+                # ROC Curve
+                # -------------------------------
+                RocCurveDisplay.from_predictions(
+                    y_test,
+                    y_test_prob
+                )
+
+                plt.savefig("roc_curve.png")
+                plt.close()
+
+                mlflow.log_artifact("roc_curve.png")
+
+                # -------------------------------
+                # Confusion Matrix
+                # -------------------------------
+                ConfusionMatrixDisplay.from_predictions(
+                    y_test,
+                    y_test_pred
+                )
+
+                plt.savefig("confusion_matrix.png")
+                plt.close()
+
+                mlflow.log_artifact("confusion_matrix.png")
 
         except Exception as e:
             raise CustomException(e, sys)
@@ -195,7 +258,7 @@ class ModelTrainer:
             else:
                 raise ValueError(
                     f"{best_model} does not support probability estimation."
-                )
+                ) 
 
 
             classification_test_metric = get_classification_score(
@@ -210,7 +273,10 @@ class ModelTrainer:
                 best_model=best_model,
                 best_model_name=best_model_name,
                 train_metric=classification_train_metric,
-                test_metric=classification_test_metric
+                test_metric=classification_test_metric,
+                y_test=y_test,
+                y_test_pred=y_test_pred,
+                y_test_prob=y_test_prob
             )
   
 

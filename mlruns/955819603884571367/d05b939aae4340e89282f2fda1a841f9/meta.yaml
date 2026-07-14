@@ -1,0 +1,15 @@
+artifact_uri: file:///E:/Udemy/Project%204/Insurance%20Fraud%20Detection/mlruns/955819603884571367/d05b939aae4340e89282f2fda1a841f9/artifacts
+end_time: 1784051024614
+entry_point_name: ''
+experiment_id: '955819603884571367'
+lifecycle_stage: active
+run_id: d05b939aae4340e89282f2fda1a841f9
+run_name: marvelous-tern-376
+run_uuid: d05b939aae4340e89282f2fda1a841f9
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1784051019184
+status: 3
+tags: []
+user_id: asus
