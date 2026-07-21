@@ -1,0 +1,1575 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Insurance Fraud Detection</title>
+
+    <!-- Bootstrap -->
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+          rel="stylesheet">
+
+    <!-- Bootstrap Icons -->
+
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <!-- Google Font -->
+
+    <link rel="preconnect"
+          href="https://fonts.googleapis.com">
+
+    <link rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+          rel="stylesheet">
+
+    <style>
+
+        *{
+            font-family:Poppins,sans-serif;
+        }
+
+        body{
+
+            background:linear-gradient(135deg,#0F2027,#203A43,#2C5364);
+
+            min-height:100vh;
+
+            padding:40px;
+
+        }
+
+        .main-card{
+
+            background:white;
+
+            border-radius:20px;
+
+            padding:35px;
+
+            box-shadow:0 25px 45px rgba(0,0,0,.30);
+
+        }
+
+        .section-card{
+
+            border:none;
+
+            border-radius:18px;
+
+            box-shadow:0 8px 18px rgba(0,0,0,.08);
+
+            margin-bottom:30px;
+
+        }
+
+        .section-header{
+
+            background:#0d6efd;
+
+            color:white;
+
+            padding:15px 20px;
+
+            border-radius:18px 18px 0 0;
+
+            font-size:22px;
+
+            font-weight:600;
+
+        }
+
+        .section-body{
+
+            padding:25px;
+
+        }
+
+        label{
+
+            font-weight:600;
+
+            margin-bottom:6px;
+
+        }
+
+        .form-control,
+        .form-select{
+
+            border-radius:12px;
+
+            padding:12px;
+
+        }
+
+        .form-control:focus,
+        .form-select:focus{
+
+            box-shadow:none;
+
+            border:2px solid #0d6efd;
+
+        }
+
+        .range-value{
+
+            color:#0d6efd;
+
+            font-weight:700;
+
+            font-size:18px;
+
+        }
+
+        .btn-predict{
+
+            width:100%;
+
+            height:60px;
+
+            font-size:22px;
+
+            border-radius:15px;
+
+            font-weight:bold;
+
+        }
+
+        .hero{
+
+            text-align:center;
+
+            margin-bottom:35px;
+
+        }
+
+        .hero h1{
+
+            font-weight:700;
+
+        }
+
+        .hero p{
+
+            color:gray;
+
+        }
+
+        .result-card{
+
+            margin-top:30px;
+
+            border-radius:18px;
+
+            display:none;
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="main-card">
+
+<div class="hero">
+
+<h1>
+
+<i class="bi bi-shield-check"></i>
+
+Insurance Fraud Detection
+
+</h1>
+
+<p>
+
+Predict whether an insurance claim is fraudulent using Machine Learning
+
+</p>
+
+</div>
+
+<form id="predictForm" action="/predictdata" method="POST">
+    <!-- ================= Policy Information ================= -->
+
+<div class="section-card">
+
+    <div class="section-header">
+
+        <i class="bi bi-file-earmark-text-fill"></i>
+        Policy Information
+
+    </div>
+
+    <div class="section-body">
+
+        <div class="row">
+
+            <!-- Months as Customer -->
+
+            <div class="col-md-6 mb-4">
+
+                <label class="form-label">
+
+                    Months as Customer
+
+                    <span id="monthsValue"
+                          class="range-value float-end">
+
+                        204
+
+                    </span>
+
+                </label>
+
+                <input
+                    type="range"
+                    class="form-range"
+                    id="months_as_customer"
+                    name="months_as_customer"
+                    min="0"
+                    max="479"
+                    value="204"
+                    step="1"
+
+                    oninput="monthsValue.innerHTML=this.value">
+
+                <small class="text-muted">
+
+                    Range : 0 - 479 months
+
+                </small>
+
+            </div>
+
+
+            <!-- Age -->
+
+            <div class="col-md-6 mb-4">
+
+                <label class="form-label">
+
+                    Age
+
+                    <span id="ageValue"
+                          class="range-value float-end">
+
+                        39
+
+                    </span>
+
+                </label>
+
+                <input
+                    type="range"
+                    class="form-range"
+                    id="age"
+                    name="age"
+                    min="20"
+                    max="64"
+                    value="39"
+                    step="1"
+
+                    oninput="ageValue.innerHTML=this.value">
+
+                <small class="text-muted">
+
+                    Range : 20 - 64 Years
+
+                </small>
+
+            </div>
+
+        </div>
+
+
+        <div class="row">
+
+            <!-- Policy State -->
+
+            <div class="col-md-6 mb-4">
+
+                <label>
+
+                    Policy State
+
+                </label>
+
+                <select
+                    class="form-select"
+                    name="policy_state">
+
+                    <option value="IL">Illinois (IL)</option>
+
+                    <option value="IN">Indiana (IN)</option>
+
+                    <option value="OH" selected>Ohio (OH)</option>
+
+                </select>
+
+            </div>
+
+
+            <!-- Policy CSL -->
+
+            <div class="col-md-6 mb-4">
+
+                <label>
+
+                    Policy Coverage
+
+                </label>
+
+                <select
+                    class="form-select"
+                    name="policy_csl">
+
+                    <option value="100/300">
+
+                        100 / 300
+
+                    </option>
+
+                    <option
+                        value="250/500"
+                        selected>
+
+                        250 / 500
+
+                    </option>
+
+                    <option value="500/1000">
+
+                        500 / 1000
+
+                    </option>
+
+                </select>
+
+            </div>
+
+        </div>
+
+
+
+        <div class="row">
+
+            <!-- Deductable -->
+
+            <div class="col-md-4 mb-4">
+
+                <label>
+
+                    Policy Deductable ($)
+
+                </label>
+
+                <input
+                    type="number"
+                    class="form-control"
+
+                    name="policy_deductable"
+
+                    min="500"
+
+                    max="2000"
+
+                    step="500"
+
+                    value="1000"
+
+                    required>
+
+                <small class="text-muted">
+
+                    500 - 2000
+
+                </small>
+
+            </div>
+
+
+
+            <!-- Annual Premium -->
+
+            <div class="col-md-4 mb-4">
+
+                <label>
+
+                    Annual Premium ($)
+
+                </label>
+
+                <input
+                    type="number"
+
+                    class="form-control"
+
+                    name="policy_annual_premium"
+
+                    min="433.33"
+
+                    max="2047.59"
+
+                    step="0.01"
+
+                    value="1258.20"
+
+                    required>
+
+                <small class="text-muted">
+
+                    433.33 - 2047.59
+
+                </small>
+
+            </div>
+
+
+
+            <!-- Umbrella Limit -->
+
+            <div class="col-md-4 mb-4">
+
+                <label>
+
+                    Umbrella Limit ($)
+
+                </label>
+
+                <input
+                    type="number"
+
+                    class="form-control"
+
+                    name="umbrella_limit"
+
+                    min="-1000000"
+
+                    max="10000000"
+
+                    step="100000"
+
+                    value="0"
+
+                    required>
+
+                <small class="text-muted">
+
+                    -1,000,000 to 10,000,000
+
+                </small>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- ================= End Policy Information ================= -->
+ 
+ <!-- ================= Customer Information ================= -->
+
+<div class="section-card">
+
+    <div class="section-header">
+
+        <i class="bi bi-person-circle"></i>
+
+        Customer Information
+
+    </div>
+
+    <div class="section-body">
+
+        <div class="row">
+
+            <!-- Gender -->
+
+            <div class="col-md-4 mb-4">
+
+                <label>Gender</label>
+
+                <select class="form-select"
+                        name="insured_sex">
+
+                    <option value="MALE">Male</option>
+
+                    <option value="FEMALE">Female</option>
+
+                </select>
+
+            </div>
+
+            <!-- Education -->
+
+            <div class="col-md-4 mb-4">
+
+                <label>Education</label>
+
+                <select class="form-select"
+                        name="insured_education_level">
+
+                    <option value="High School">High School</option>
+
+                    <option value="College">College</option>
+
+                    <option value="Associate">Associate</option>
+
+                    <option value="Masters">Masters</option>
+
+                    <option value="JD">JD</option>
+
+                    <option value="MD">MD</option>
+
+                    <option value="PhD">PhD</option>
+
+                </select>
+
+            </div>
+
+            <!-- Relationship -->
+
+            <div class="col-md-4 mb-4">
+
+                <label>Relationship</label>
+
+                <select class="form-select"
+                        name="insured_relationship">
+
+                    <option value="husband">Husband</option>
+
+                    <option value="wife">Wife</option>
+
+                    <option value="own-child">Own Child</option>
+
+                    <option value="other-relative">Other Relative</option>
+
+                    <option value="unmarried">Unmarried</option>
+
+                    <option value="not-in-family">Not In Family</option>
+
+                </select>
+
+            </div>
+
+        </div>
+
+
+
+        <div class="row">
+
+            <!-- Occupation -->
+
+            <div class="col-md-6 mb-4">
+
+                <label>Occupation</label>
+
+                <select class="form-select"
+                        name="insured_occupation">
+
+                    <option value="adm-clerical">Administrative Clerical</option>
+
+                    <option value="armed-forces">Armed Forces</option>
+
+                    <option value="craft-repair">Craft Repair</option>
+
+                    <option value="exec-managerial">Executive Managerial</option>
+
+                    <option value="farming-fishing">Farming Fishing</option>
+
+                    <option value="handlers-cleaners">Handlers Cleaners</option>
+
+                    <option value="machine-op-inspct">Machine Operator Inspector</option>
+
+                    <option value="other-service">Other Service</option>
+
+                    <option value="priv-house-serv">Private House Service</option>
+
+                    <option value="prof-specialty">Professional Specialty</option>
+
+                    <option value="protective-serv">Protective Service</option>
+
+                    <option value="sales">Sales</option>
+
+                    <option value="tech-support">Tech Support</option>
+
+                    <option value="transport-moving">Transport Moving</option>
+
+                </select>
+
+            </div>
+
+            <!-- Hobbies -->
+
+            <div class="col-md-6 mb-4">
+
+                <label>Hobbies</label>
+
+                <select class="form-select"
+                        name="insured_hobbies">
+
+                    <option value="base-jumping">Base Jumping</option>
+
+                    <option value="basketball">Basketball</option>
+
+                    <option value="board-games">Board Games</option>
+
+                    <option value="bungie-jumping">Bungie Jumping</option>
+
+                    <option value="camping">Camping</option>
+
+                    <option value="chess">Chess</option>
+
+                    <option value="cross-fit">Cross Fit</option>
+
+                    <option value="dancing">Dancing</option>
+
+                    <option value="exercise">Exercise</option>
+
+                    <option value="golf">Golf</option>
+
+                    <option value="hiking">Hiking</option>
+
+                    <option value="kayaking">Kayaking</option>
+
+                    <option value="movies">Movies</option>
+
+                    <option value="paintball">Paintball</option>
+
+                    <option value="polo">Polo</option>
+
+                    <option value="reading">Reading</option>
+
+                    <option value="skydiving">Skydiving</option>
+
+                    <option value="sleeping">Sleeping</option>
+
+                    <option value="video-games">Video Games</option>
+
+                    <option value="yachting">Yachting</option>
+
+                </select>
+
+            </div>
+
+        </div>
+
+
+
+        <div class="row">
+
+            <!-- Capital Gains -->
+
+            <div class="col-md-6 mb-4">
+
+                <label>Capital Gains ($)</label>
+
+                <input
+
+                    type="number"
+
+                    class="form-control"
+
+                    name="capital_gains"
+
+                    min="0"
+
+                    max="100500"
+
+                    step="100"
+
+                    value="24500"
+
+                    required>
+
+                <small class="text-muted">
+
+                    Range : 0 - 100,500
+
+                </small>
+
+            </div>
+
+
+
+            <!-- Capital Loss -->
+
+            <div class="col-md-6 mb-4">
+
+                <label>Capital Loss ($)</label>
+
+                <input
+
+                    type="number"
+
+                    class="form-control"
+
+                    name="capital_loss"
+
+                    min="-111100"
+
+                    max="0"
+
+                    step="100"
+
+                    value="-26000"
+
+                    required>
+
+                <small class="text-muted">
+
+                    Range : -111,100 - 0
+
+                </small>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- ================= End Customer Information ================= -->
+ <!-- ================= Incident Information ================= -->
+
+<div class="section-card">
+
+    <div class="section-header">
+
+        <i class="bi bi-exclamation-triangle-fill"></i>
+
+        Incident Information
+
+    </div>
+
+    <div class="section-body">
+
+        <div class="row">
+
+            <!-- Incident Type -->
+
+            <div class="col-md-6 mb-4">
+
+                <label>Incident Type</label>
+
+                <select class="form-select"
+                        name="incident_type">
+
+                    <option value="Single Vehicle Collision">
+                        Single Vehicle Collision
+                    </option>
+
+                    <option value="Multi-vehicle Collision">
+                        Multi Vehicle Collision
+                    </option>
+
+                    <option value="Parked Car">
+                        Parked Car
+                    </option>
+
+                    <option value="Vehicle Theft">
+                        Vehicle Theft
+                    </option>
+
+                </select>
+
+            </div>
+
+            <!-- Collision Type -->
+
+            <div class="col-md-6 mb-4">
+
+                <label>Collision Type</label>
+
+                <select class="form-select"
+                        name="collision_type">
+
+                    <option value="Front Collision">
+                        Front Collision
+                    </option>
+
+                    <option value="Rear Collision">
+                        Rear Collision
+                    </option>
+
+                    <option value="Side Collision">
+                        Side Collision
+                    </option>
+
+                    <option value="unknown">
+                        Unknown
+                    </option>
+
+                </select>
+
+            </div>
+
+        </div>
+        <div class="row">
+
+    <!-- Incident Severity -->
+
+    <div class="col-md-6 mb-4">
+
+        <label>Incident Severity</label>
+
+        <select class="form-select"
+                name="incident_severity">
+
+            <option value="Minor Damage">
+                Minor Damage
+            </option>
+
+            <option value="Major Damage">
+                Major Damage
+            </option>
+
+            <option value="Total Loss">
+                Total Loss
+            </option>
+
+            <option value="Trivial Damage">
+                Trivial Damage
+            </option>
+
+        </select>
+
+    </div>
+
+    <!-- Authorities Contacted -->
+
+    <div class="col-md-6 mb-4">
+
+        <label>Authorities Contacted</label>
+
+        <select class="form-select"
+                name="authorities_contacted">
+
+            <option value="Police">
+                Police
+            </option>
+
+            <option value="Ambulance">
+                Ambulance
+            </option>
+
+            <option value="Fire">
+                Fire
+            </option>
+
+            <option value="Other">
+                Other
+            </option>
+
+            <option value="unknown">
+                Unknown
+            </option>
+
+        </select>
+
+    </div>
+
+</div>
+<div class="row">
+
+    <!-- Incident State -->
+
+    <div class="col-md-6 mb-4">
+
+        <label>Incident State</label>
+
+        <select class="form-select"
+                name="incident_state">
+
+            <option value="NC">North Carolina (NC)</option>
+
+            <option value="NY">New York (NY)</option>
+
+            <option value="OH">Ohio (OH)</option>
+
+            <option value="PA">Pennsylvania (PA)</option>
+
+            <option value="SC">South Carolina (SC)</option>
+
+            <option value="VA">Virginia (VA)</option>
+
+            <option value="WV">West Virginia (WV)</option>
+
+        </select>
+
+    </div>
+
+    <!-- Incident City -->
+
+    <div class="col-md-6 mb-4">
+
+        <label>Incident City</label>
+
+        <select class="form-select"
+                name="incident_city">
+
+            <option value="Arlington">Arlington</option>
+
+            <option value="Columbus">Columbus</option>
+
+            <option value="Hillsdale">Hillsdale</option>
+
+            <option value="Northbend">Northbend</option>
+
+            <option value="Northbrook">Northbrook</option>
+
+            <option value="Riverwood">Riverwood</option>
+
+            <option value="Springfield">Springfield</option>
+
+        </select>
+
+    </div>
+
+</div>
+<hr>
+
+<h5 class="mb-4">
+
+    <i class="bi bi-sliders"></i>
+
+    Incident Statistics
+
+</h5>
+
+<div class="row">
+
+    <!-- Incident Hour -->
+
+    <div class="col-md-6 mb-4">
+
+        <label>
+
+            Incident Hour
+
+            <span id="hourValue"
+                  class="range-value float-end">
+
+                12
+
+            </span>
+
+        </label>
+
+        <input
+            type="range"
+            class="form-range"
+            name="incident_hour_of_the_day"
+            min="0"
+            max="23"
+            value="12"
+            step="1"
+            oninput="hourValue.innerHTML=this.value">
+
+        <small class="text-muted">
+
+            Range : 0 - 23 Hours
+
+        </small>
+
+    </div>
+
+    <!-- Vehicles Involved -->
+
+    <div class="col-md-6 mb-4">
+
+        <label>
+
+            Vehicles Involved
+
+            <span id="vehicleValue"
+                  class="range-value float-end">
+
+                2
+
+            </span>
+
+        </label>
+
+        <input
+            type="range"
+            class="form-range"
+            name="number_of_vehicles_involved"
+            min="1"
+            max="4"
+            value="2"
+            step="1"
+            oninput="vehicleValue.innerHTML=this.value">
+
+        <small class="text-muted">
+
+            Range : 1 - 4 Vehicles
+
+        </small>
+
+    </div>
+
+</div>
+
+<div class="row">
+
+    <!-- Bodily Injuries -->
+
+    <div class="col-md-6 mb-4">
+
+        <label>
+
+            Bodily Injuries
+
+            <span id="injuryValue"
+                  class="range-value float-end">
+
+                1
+
+            </span>
+
+        </label>
+
+        <input
+            type="range"
+            class="form-range"
+            name="bodily_injuries"
+            min="0"
+            max="2"
+            value="1"
+            step="1"
+            oninput="injuryValue.innerHTML=this.value">
+
+        <small class="text-muted">
+
+            Range : 0 - 2
+
+        </small>
+
+    </div>
+
+    <!-- Witnesses -->
+
+    <div class="col-md-6 mb-4">
+
+        <label>
+
+            Witnesses
+
+            <span id="witnessValue"
+                  class="range-value float-end">
+
+                2
+
+            </span>
+
+        </label>
+
+        <input
+            type="range"
+            class="form-range"
+            name="witnesses"
+            min="0"
+            max="3"
+            value="2"
+            step="1"
+            oninput="witnessValue.innerHTML=this.value">
+
+        <small class="text-muted">
+
+            Range : 0 - 3 Witnesses
+
+        </small>
+
+    </div>
+
+</div>
+<div class="row">
+
+    <!-- Property Damage -->
+
+    <div class="col-md-6 mb-4">
+
+        <label>Property Damage</label>
+
+        <select class="form-select"
+                name="property_damage">
+
+            <option value="YES">YES</option>
+
+            <option value="NO">NO</option>
+
+            <option value="unknown">Unknown</option>
+
+        </select>
+
+    </div>
+
+    <!-- Police Report Available -->
+
+    <div class="col-md-6 mb-4">
+
+        <label>Police Report Available</label>
+
+        <select class="form-select"
+                name="police_report_available">
+
+            <option value="YES">YES</option>
+
+            <option value="NO">NO</option>
+
+            <option value="unknown">Unknown</option>
+
+        </select>
+
+    </div>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- ================= End Incident Information ================= -->
+ <!-- ================= Vehicle Information ================= -->
+
+<div class="section-card">
+
+    <div class="section-header">
+
+        <i class="bi bi-car-front"></i>
+
+        Vehicle Information
+
+    </div>
+
+    <div class="section-body">
+
+        <div class="row">
+
+            <!-- Auto Make -->
+
+            <div class="col-md-4 mb-4">
+
+                <label>Vehicle Make</label>
+
+                <select class="form-select"
+                        name="auto_make">
+
+                    <option>Accura</option>
+                    <option>Audi</option>
+                    <option>BMW</option>
+                    <option>Chevrolet</option>
+                    <option>Dodge</option>
+                    <option>Ford</option>
+                    <option>Honda</option>
+                    <option>Jeep</option>
+                    <option>Mercedes</option>
+                    <option>Nissan</option>
+                    <option>Saab</option>
+                    <option>Suburu</option>
+                    <option>Toyota</option>
+                    <option>Volkswagen</option>
+
+                </select>
+
+            </div>
+
+            <!-- Auto Model -->
+
+            <div class="col-md-4 mb-4">
+
+                <label>Vehicle Model</label>
+
+                <select class="form-select"
+                        name="auto_model">
+
+                    <option>3 Series</option>
+                    <option>92x</option>
+                    <option>93</option>
+                    <option>95</option>
+                    <option>A3</option>
+                    <option>A5</option>
+                    <option>Accord</option>
+                    <option>CRV</option>
+                    <option>C300</option>
+                    <option>Camry</option>
+                    <option>Civic</option>
+                    <option>Corolla</option>
+                    <option>E400</option>
+                    <option>Escape</option>
+                    <option>F150</option>
+                    <option>Forrestor</option>
+                    <option>Fusion</option>
+                    <option>Grand Cherokee</option>
+                    <option>Highlander</option>
+                    <option>Impreza</option>
+                    <option>Jetta</option>
+                    <option>Legacy</option>
+                    <option>M5</option>
+                    <option>Malibu</option>
+                    <option>Maxima</option>
+                    <option>MDX</option>
+                    <option>ML350</option>
+                    <option>Neon</option>
+                    <option>Passat</option>
+                    <option>Pathfinder</option>
+                    <option>RAM</option>
+                    <option>RSX</option>
+                    <option>Silverado</option>
+                    <option>Tahoe</option>
+                    <option>TL</option>
+                    <option>Ultima</option>
+                    <option>Wrangler</option>
+                    <option>X5</option>
+                    <option>X6</option>
+
+                </select>
+
+            </div>
+
+            <!-- Auto Year -->
+
+            <div class="col-md-4 mb-4">
+
+                <label>Vehicle Year</label>
+
+                <input
+                    type="number"
+                    class="form-control"
+                    name="auto_year"
+                    min="1995"
+                    max="2015"
+                    value="2008"
+                    required>
+
+                <small class="text-muted">
+
+                    1995 - 2015
+
+                </small>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<!-- ================= Claim Information ================= -->
+
+<div class="section-card">
+
+    <div class="section-header">
+
+        <i class="bi bi-cash-stack"></i>
+
+        Claim Information
+
+    </div>
+
+    <div class="section-body">
+
+        <div class="row">
+
+            <div class="col-md-4 mb-4">
+
+                <label>Injury Claim ($)</label>
+
+                <input
+                    type="number"
+                    class="form-control"
+                    name="injury_claim"
+                    min="0"
+                    max="21450"
+                    step="10"
+                    value="7000">
+
+                <small>0 - 21,450</small>
+
+            </div>
+
+            <div class="col-md-4 mb-4">
+
+                <label>Property Claim ($)</label>
+
+                <input
+                    type="number"
+                    class="form-control"
+                    name="property_claim"
+                    min="0"
+                    max="23670"
+                    step="10"
+                    value="7000">
+
+                <small>0 - 23,670</small>
+
+            </div>
+
+            <div class="col-md-4 mb-4">
+
+                <label>Vehicle Claim ($)</label>
+
+                <input
+                    type="number"
+                    class="form-control"
+                    name="vehicle_claim"
+                    min="1440"
+                    max="79560"
+                    step="10"
+                    value="38000">
+
+                <small>1,440 - 79,560</small>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<!-- ================= Date Information ================= -->
+
+<div class="section-card">
+
+    <div class="section-header">
+
+        <i class="bi bi-calendar-event"></i>
+
+        Date Information
+
+    </div>
+
+    <div class="section-body">
+
+        <div class="row">
+
+            <div class="col-md-4 mb-4">
+
+                <label>Policy Bind Year</label>
+
+                <input
+                    type="number"
+                    class="form-control"
+                    name="policy_bind_year"
+                    min="1990"
+                    max="2015"
+                    value="2005">
+
+            </div>
+
+            <div class="col-md-4 mb-4">
+
+                <label>Policy Bind Month</label>
+
+                <input
+                    type="number"
+                    class="form-control"
+                    name="policy_bind_month"
+                    min="1"
+                    max="12"
+                    value="6">
+
+            </div>
+
+            <div class="col-md-4 mb-4">
+
+                <label>Policy Bind Day</label>
+
+                <input
+                    type="number"
+                    class="form-control"
+                    name="policy_bind_day"
+                    min="1"
+                    max="31"
+                    value="15">
+
+            </div>
+
+        </div>
+
+        <div class="row">
+
+            <div class="col-md-6 mb-4">
+
+                <label>Incident Month</label>
+
+                <input
+                    type="number"
+                    class="form-control"
+                    name="incident_month"
+                    min="1"
+                    max="3"
+                    value="2">
+
+            </div>
+
+            <div class="col-md-6 mb-4">
+
+                <label>Incident Day</label>
+
+                <input
+                    type="number"
+                    class="form-control"
+                    name="incident_day"
+                    min="1"
+                    max="31"
+                    value="14">
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+<!-- ================= Predict Button ================= -->
+
+<div class="d-grid mt-4">
+
+<button
+    id="predictBtn"
+    class="btn btn-primary btn-lg btn-predict"
+    type="submit">
+    Predict Insurance Fraud
+</button>
+
+</div>
+
+
+<!-- ================= Prediction Result ================= -->
+
+{% if results %}
+
+<div class="card shadow-lg border-0 mt-5">
+
+    <div class="card-header bg-dark text-white">
+
+        <h3 class="mb-0">
+            <i class="bi bi-bar-chart-fill"></i>
+            Prediction Result
+        </h3>
+
+    </div>
+
+    <div class="card-body text-center">
+
+        {% if results == "Fraud Detected" %}
+
+        <div class="alert alert-danger p-4">
+
+            <h2>
+                <i class="bi bi-exclamation-triangle-fill"></i>
+                {{ results }}
+            </h2>
+
+            <hr>
+
+            <h5>
+                This insurance claim appears to be fraudulent.
+            </h5>
+
+            <h4 class="mt-3">
+                Confidence: <strong>{{ confidence }}%</strong>
+            </h4>
+
+        </div>
+
+        {% elif results == "Genuine Claim" %}
+
+        <div class="alert alert-success p-4">
+
+            <h2>
+                <i class="bi bi-check-circle-fill"></i>
+                {{ results }}
+            </h2>
+
+            <hr>
+
+            <h5>
+                This insurance claim appears to be genuine.
+            </h5>
+
+            <h4 class="mt-3">
+                Confidence: <strong>{{ confidence }}%</strong>
+            </h4>
+
+        </div>
+
+        {% else %}
+
+        <div class="alert alert-warning p-4">
+
+            <h2>
+                <i class="bi bi-exclamation-circle-fill"></i>
+                {{ results }}
+            </h2>
+
+            <hr>
+
+            <h5>
+                Something went wrong while generating the prediction.
+            </h5>
+
+            <p class="mb-0">
+                {{ confidence }}
+            </p>
+
+        </div>
+
+        {% endif %}
+
+    </div>
+
+</div>
+
+{% endif %}
+
+</form>
+
+<hr class="mt-5">
+
+<div class="text-center text-muted">
+
+    <p>
+
+        <i class="bi bi-shield-check"></i>
+
+        Insurance Fraud Detection System
+
+    </p>
+
+    <p>
+
+        Developed using Flask • Scikit-Learn • Bootstrap 5
+
+    </p>
+
+</div>
+
+</div>
+
+</div>
+

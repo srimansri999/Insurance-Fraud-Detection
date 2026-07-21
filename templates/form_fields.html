@@ -1,0 +1,1006 @@
+
+
+<div class="card shadow-sm mb-4">
+
+    <div class="card-header bg-primary text-white">
+
+        <h5 class="mb-0">Policy Details</h5>
+
+    </div>
+
+    <div class="card-body">
+
+        <div class="row">
+
+
+<div class="col-lg-6 col-md-6 mb-4">
+
+    <label class="form-label fw-semibold">
+        Months As Customer
+    </label>
+
+    <input
+        type="number"
+        class="form-control"
+        name="months_as_customer"
+        min="0"
+        max="479"
+        step="any"
+        placeholder="Enter value (0 - 479)"
+        required>
+
+    <div class="form-text text-primary">
+        Allowed Range : 0 — 479
+    </div>
+
+</div>
+
+<div class="col-lg-6 col-md-6 mb-4">
+
+    <label class="form-label fw-semibold">
+        Policy State
+    </label>
+
+    <select
+        class="form-select"
+        name="policy_state"
+        required>
+
+        <option value="IL">IL</option>
+<option value="IN">IN</option>
+<option value="OH">OH</option>
+
+
+    </select>
+
+</div>
+
+<div class="col-lg-6 col-md-6 mb-4">
+
+    <label class="form-label fw-semibold">
+        Policy Csl
+    </label>
+
+    <select
+        class="form-select"
+        name="policy_csl"
+        required>
+
+        <option value="100/300">100/300</option>
+<option value="250/500">250/500</option>
+<option value="500/1000">500/1000</option>
+
+
+    </select>
+
+</div>
+
+<div class="col-lg-6 col-md-6 mb-4">
+
+    <label class="form-label fw-semibold">
+        Policy Deductable
+    </label>
+
+    <input
+        type="number"
+        class="form-control"
+        name="policy_deductable"
+        min="500"
+        max="2000"
+        step="any"
+        placeholder="Enter value (500 - 2000)"
+        required>
+
+    <div class="form-text text-primary">
+        Allowed Range : 500 — 2000
+    </div>
+
+</div>
+
+<div class="col-lg-6 col-md-6 mb-4">
+
+    <label class="form-label fw-semibold">
+        Policy Annual Premium
+    </label>
+
+    <input
+        type="number"
+        class="form-control"
+        name="policy_annual_premium"
+        min="433.33"
+        max="2047.59"
+        step="any"
+        placeholder="Enter value (433.33 - 2047.59)"
+        required>
+
+    <div class="form-text text-primary">
+        Allowed Range : 433.33 — 2047.59
+    </div>
+
+</div>
+
+<div class="col-lg-6 col-md-6 mb-4">
+
+    <label class="form-label fw-semibold">
+        Umbrella Limit
+    </label>
+
+    <input
+        type="number"
+        class="form-control"
+        name="umbrella_limit"
+        min="-1000000"
+        max="10000000"
+        step="any"
+        placeholder="Enter value (-1000000 - 10000000)"
+        required>
+
+    <div class="form-text text-primary">
+        Allowed Range : -1000000 — 10000000
+    </div>
+
+</div>
+
+<div class="col-lg-6 col-md-6 mb-4">
+
+    <label class="form-label fw-semibold">
+        Policy Bind Year
+    </label>
+
+    <input
+        type="number"
+        class="form-control"
+        name="policy_bind_year"
+        min="1990"
+        max="2015"
+        step="any"
+        placeholder="Enter value (1990 - 2015)"
+        required>
+
+    <div class="form-text text-primary">
+        Allowed Range : 1990 — 2015
+    </div>
+
+</div>
+
+<div class="col-lg-6 col-md-6 mb-4">
+
+    <label class="form-label fw-semibold">
+        Policy Bind Month
+    </label>
+
+    <input
+        type="number"
+        class="form-control"
+        name="policy_bind_month"
+        min="1"
+        max="12"
+        step="any"
+        placeholder="Enter value (1 - 12)"
+        required>
+
+    <div class="form-text text-primary">
+        Allowed Range : 1 — 12
+    </div>
+
+</div>
+
+<div class="col-lg-6 col-md-6 mb-4">
+
+    <label class="form-label fw-semibold">
+        Policy Bind Day
+    </label>
+
+    <input
+        type="number"
+        class="form-control"
+        name="policy_bind_day"
+        min="1"
+        max="31"
+        step="any"
+        placeholder="Enter value (1 - 31)"
+        required>
+
+    <div class="form-text text-primary">
+        Allowed Range : 1 — 31
+    </div>
+
+</div>
+
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<div class="card shadow-sm mb-4">
+
+    <div class="card-header bg-primary text-white">
+
+        <h5 class="mb-0">Customer Details</h5>
+
+    </div>
+
+    <div class="card-body">
+
+        <div class="row">
+
+
+<div class="col-lg-6 col-md-6 mb-4">
+
+    <label class="form-label fw-semibold">
+        Age
+    </label>
+
+    <input
+        type="number"
+        class="form-control"
+        name="age"
+        min="20"
+        max="64"
+        step="any"
+        placeholder="Enter value (20 - 64)"
+        required>
+
+    <div class="form-text text-primary">
+        Allowed Range : 20 — 64
+    </div>
+
+</div>
+
+<div class="col-lg-6 col-md-6 mb-4">
+
+    <label class="form-label fw-semibold">
+        Insured Sex
+    </label>
+
+    <select
+        class="form-select"
+        name="insured_sex"
+        required>
+
+        <option value="FEMALE">FEMALE</option>
+<option value="MALE">MALE</option>
+
+
+    </select>
+
+</div>
+
+<div class="col-lg-6 col-md-6 mb-4">
+
+    <label class="form-label fw-semibold">
+        Insured Education Level
+    </label>
+
+    <select
+        class="form-select"
+        name="insured_education_level"
+        required>
+
+        <option value="Associate">Associate</option>
+<option value="College">College</option>
+<option value="High School">High School</option>
+<option value="JD">JD</option>
+<option value="MD">MD</option>
+<option value="Masters">Masters</option>
+<option value="PhD">PhD</option>
+
+
+    </select>
+
+</div>
+
+<div class="col-lg-6 col-md-6 mb-4">
+
+    <label class="form-label fw-semibold">
+        Insured Occupation
+    </label>
+
+    <select
+        class="form-select"
+        name="insured_occupation"
+        required>
+
+        <option value="adm-clerical">adm-clerical</option>
+<option value="armed-forces">armed-forces</option>
+<option value="craft-repair">craft-repair</option>
+<option value="exec-managerial">exec-managerial</option>
+<option value="farming-fishing">farming-fishing</option>
+<option value="handlers-cleaners">handlers-cleaners</option>
+<option value="machine-op-inspct">machine-op-inspct</option>
+<option value="other-service">other-service</option>
+<option value="priv-house-serv">priv-house-serv</option>
+<option value="prof-specialty">prof-specialty</option>
+<option value="protective-serv">protective-serv</option>
+<option value="sales">sales</option>
+<option value="tech-support">tech-support</option>
+<option value="transport-moving">transport-moving</option>
+
+
+    </select>
+
+</div>
+
+<div class="col-lg-6 col-md-6 mb-4">
+
+    <label class="form-label fw-semibold">
+        Insured Hobbies
+    </label>
+
+    <select
+        class="form-select"
+        name="insured_hobbies"
+        required>
+
+        <option value="base-jumping">base-jumping</option>
+<option value="basketball">basketball</option>
+<option value="board-games">board-games</option>
+<option value="bungie-jumping">bungie-jumping</option>
+<option value="camping">camping</option>
+<option value="chess">chess</option>
+<option value="cross-fit">cross-fit</option>
+<option value="dancing">dancing</option>
+<option value="exercise">exercise</option>
+<option value="golf">golf</option>
+<option value="hiking">hiking</option>
+<option value="kayaking">kayaking</option>
+<option value="movies">movies</option>
+<option value="paintball">paintball</option>
+<option value="polo">polo</option>
+<option value="reading">reading</option>
+<option value="skydiving">skydiving</option>
+<option value="sleeping">sleeping</option>
+<option value="video-games">video-games</option>
+<option value="yachting">yachting</option>
+
+
+    </select>
+
+</div>
+
+<div class="col-lg-6 col-md-6 mb-4">
+
+    <label class="form-label fw-semibold">
+        Insured Relationship
+    </label>
+
+    <select
+        class="form-select"
+        name="insured_relationship"
+        required>
+
+        <option value="husband">husband</option>
+<option value="not-in-family">not-in-family</option>
+<option value="other-relative">other-relative</option>
+<option value="own-child">own-child</option>
+<option value="unmarried">unmarried</option>
+<option value="wife">wife</option>
+
+
+    </select>
+
+</div>
+
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<div class="card shadow-sm mb-4">
+
+    <div class="card-header bg-primary text-white">
+
+        <h5 class="mb-0">Incident Details</h5>
+
+    </div>
+
+    <div class="card-body">
+
+        <div class="row">
+
+
+<div class="col-lg-6 col-md-6 mb-4">
+
+    <label class="form-label fw-semibold">
+        Incident Type
+    </label>
+
+    <select
+        class="form-select"
+        name="incident_type"
+        required>
+
+        <option value="Multi-vehicle Collision">Multi-vehicle Collision</option>
+<option value="Parked Car">Parked Car</option>
+<option value="Single Vehicle Collision">Single Vehicle Collision</option>
+<option value="Vehicle Theft">Vehicle Theft</option>
+
+
+    </select>
+
+</div>
+
+<div class="col-lg-6 col-md-6 mb-4">
+
+    <label class="form-label fw-semibold">
+        Collision Type
+    </label>
+
+    <select
+        class="form-select"
+        name="collision_type"
+        required>
+
+        <option value="Front Collision">Front Collision</option>
+<option value="Rear Collision">Rear Collision</option>
+<option value="Side Collision">Side Collision</option>
+<option value="unknown">unknown</option>
+
+
+    </select>
+
+</div>
+
+<div class="col-lg-6 col-md-6 mb-4">
+
+    <label class="form-label fw-semibold">
+        Incident Severity
+    </label>
+
+    <select
+        class="form-select"
+        name="incident_severity"
+        required>
+
+        <option value="Major Damage">Major Damage</option>
+<option value="Minor Damage">Minor Damage</option>
+<option value="Total Loss">Total Loss</option>
+<option value="Trivial Damage">Trivial Damage</option>
+
+
+    </select>
+
+</div>
+
+<div class="col-lg-6 col-md-6 mb-4">
+
+    <label class="form-label fw-semibold">
+        Authorities Contacted
+    </label>
+
+    <select
+        class="form-select"
+        name="authorities_contacted"
+        required>
+
+        <option value="Ambulance">Ambulance</option>
+<option value="Fire">Fire</option>
+<option value="Other">Other</option>
+<option value="Police">Police</option>
+<option value="unknown">unknown</option>
+
+
+    </select>
+
+</div>
+
+<div class="col-lg-6 col-md-6 mb-4">
+
+    <label class="form-label fw-semibold">
+        Incident State
+    </label>
+
+    <select
+        class="form-select"
+        name="incident_state"
+        required>
+
+        <option value="NC">NC</option>
+<option value="NY">NY</option>
+<option value="OH">OH</option>
+<option value="PA">PA</option>
+<option value="SC">SC</option>
+<option value="VA">VA</option>
+<option value="WV">WV</option>
+
+
+    </select>
+
+</div>
+
+<div class="col-lg-6 col-md-6 mb-4">
+
+    <label class="form-label fw-semibold">
+        Incident City
+    </label>
+
+    <select
+        class="form-select"
+        name="incident_city"
+        required>
+
+        <option value="Arlington">Arlington</option>
+<option value="Columbus">Columbus</option>
+<option value="Hillsdale">Hillsdale</option>
+<option value="Northbend">Northbend</option>
+<option value="Northbrook">Northbrook</option>
+<option value="Riverwood">Riverwood</option>
+<option value="Springfield">Springfield</option>
+
+
+    </select>
+
+</div>
+
+<div class="col-lg-6 col-md-6 mb-4">
+
+    <label class="form-label fw-semibold">
+        Incident Hour Of The Day
+    </label>
+
+    <input
+        type="number"
+        class="form-control"
+        name="incident_hour_of_the_day"
+        min="0"
+        max="23"
+        step="any"
+        placeholder="Enter value (0 - 23)"
+        required>
+
+    <div class="form-text text-primary">
+        Allowed Range : 0 — 23
+    </div>
+
+</div>
+
+<div class="col-lg-6 col-md-6 mb-4">
+
+    <label class="form-label fw-semibold">
+        Incident Month
+    </label>
+
+    <input
+        type="number"
+        class="form-control"
+        name="incident_month"
+        min="1"
+        max="3"
+        step="any"
+        placeholder="Enter value (1 - 3)"
+        required>
+
+    <div class="form-text text-primary">
+        Allowed Range : 1 — 3
+    </div>
+
+</div>
+
+<div class="col-lg-6 col-md-6 mb-4">
+
+    <label class="form-label fw-semibold">
+        Incident Day
+    </label>
+
+    <input
+        type="number"
+        class="form-control"
+        name="incident_day"
+        min="1"
+        max="31"
+        step="any"
+        placeholder="Enter value (1 - 31)"
+        required>
+
+    <div class="form-text text-primary">
+        Allowed Range : 1 — 31
+    </div>
+
+</div>
+
+<div class="col-lg-6 col-md-6 mb-4">
+
+    <label class="form-label fw-semibold">
+        Number Of Vehicles Involved
+    </label>
+
+    <input
+        type="number"
+        class="form-control"
+        name="number_of_vehicles_involved"
+        min="1"
+        max="4"
+        step="any"
+        placeholder="Enter value (1 - 4)"
+        required>
+
+    <div class="form-text text-primary">
+        Allowed Range : 1 — 4
+    </div>
+
+</div>
+
+<div class="col-lg-6 col-md-6 mb-4">
+
+    <label class="form-label fw-semibold">
+        Property Damage
+    </label>
+
+    <select
+        class="form-select"
+        name="property_damage"
+        required>
+
+        <option value="NO">NO</option>
+<option value="YES">YES</option>
+<option value="unknown">unknown</option>
+
+
+    </select>
+
+</div>
+
+<div class="col-lg-6 col-md-6 mb-4">
+
+    <label class="form-label fw-semibold">
+        Bodily Injuries
+    </label>
+
+    <input
+        type="number"
+        class="form-control"
+        name="bodily_injuries"
+        min="0"
+        max="2"
+        step="any"
+        placeholder="Enter value (0 - 2)"
+        required>
+
+    <div class="form-text text-primary">
+        Allowed Range : 0 — 2
+    </div>
+
+</div>
+
+<div class="col-lg-6 col-md-6 mb-4">
+
+    <label class="form-label fw-semibold">
+        Witnesses
+    </label>
+
+    <input
+        type="number"
+        class="form-control"
+        name="witnesses"
+        min="0"
+        max="3"
+        step="any"
+        placeholder="Enter value (0 - 3)"
+        required>
+
+    <div class="form-text text-primary">
+        Allowed Range : 0 — 3
+    </div>
+
+</div>
+
+<div class="col-lg-6 col-md-6 mb-4">
+
+    <label class="form-label fw-semibold">
+        Police Report Available
+    </label>
+
+    <select
+        class="form-select"
+        name="police_report_available"
+        required>
+
+        <option value="NO">NO</option>
+<option value="YES">YES</option>
+<option value="unknown">unknown</option>
+
+
+    </select>
+
+</div>
+
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<div class="card shadow-sm mb-4">
+
+    <div class="card-header bg-primary text-white">
+
+        <h5 class="mb-0">Claim Details</h5>
+
+    </div>
+
+    <div class="card-body">
+
+        <div class="row">
+
+
+<div class="col-lg-6 col-md-6 mb-4">
+
+    <label class="form-label fw-semibold">
+        Injury Claim
+    </label>
+
+    <input
+        type="number"
+        class="form-control"
+        name="injury_claim"
+        min="0"
+        max="21450"
+        step="any"
+        placeholder="Enter value (0 - 21450)"
+        required>
+
+    <div class="form-text text-primary">
+        Allowed Range : 0 — 21450
+    </div>
+
+</div>
+
+<div class="col-lg-6 col-md-6 mb-4">
+
+    <label class="form-label fw-semibold">
+        Property Claim
+    </label>
+
+    <input
+        type="number"
+        class="form-control"
+        name="property_claim"
+        min="0"
+        max="23670"
+        step="any"
+        placeholder="Enter value (0 - 23670)"
+        required>
+
+    <div class="form-text text-primary">
+        Allowed Range : 0 — 23670
+    </div>
+
+</div>
+
+<div class="col-lg-6 col-md-6 mb-4">
+
+    <label class="form-label fw-semibold">
+        Vehicle Claim
+    </label>
+
+    <input
+        type="number"
+        class="form-control"
+        name="vehicle_claim"
+        min="1440"
+        max="79560"
+        step="any"
+        placeholder="Enter value (1440 - 79560)"
+        required>
+
+    <div class="form-text text-primary">
+        Allowed Range : 1440 — 79560
+    </div>
+
+</div>
+
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<div class="card shadow-sm mb-4">
+
+    <div class="card-header bg-primary text-white">
+
+        <h5 class="mb-0">Vehicle Details</h5>
+
+    </div>
+
+    <div class="card-body">
+
+        <div class="row">
+
+
+<div class="col-lg-6 col-md-6 mb-4">
+
+    <label class="form-label fw-semibold">
+        Auto Make
+    </label>
+
+    <select
+        class="form-select"
+        name="auto_make"
+        required>
+
+        <option value="Accura">Accura</option>
+<option value="Audi">Audi</option>
+<option value="BMW">BMW</option>
+<option value="Chevrolet">Chevrolet</option>
+<option value="Dodge">Dodge</option>
+<option value="Ford">Ford</option>
+<option value="Honda">Honda</option>
+<option value="Jeep">Jeep</option>
+<option value="Mercedes">Mercedes</option>
+<option value="Nissan">Nissan</option>
+<option value="Saab">Saab</option>
+<option value="Suburu">Suburu</option>
+<option value="Toyota">Toyota</option>
+<option value="Volkswagen">Volkswagen</option>
+
+
+    </select>
+
+</div>
+
+<div class="col-lg-6 col-md-6 mb-4">
+
+    <label class="form-label fw-semibold">
+        Auto Model
+    </label>
+
+    <select
+        class="form-select"
+        name="auto_model"
+        required>
+
+        <option value="3 Series">3 Series</option>
+<option value="92x">92x</option>
+<option value="93">93</option>
+<option value="95">95</option>
+<option value="A3">A3</option>
+<option value="A5">A5</option>
+<option value="Accord">Accord</option>
+<option value="C300">C300</option>
+<option value="CRV">CRV</option>
+<option value="Camry">Camry</option>
+<option value="Civic">Civic</option>
+<option value="Corolla">Corolla</option>
+<option value="E400">E400</option>
+<option value="Escape">Escape</option>
+<option value="F150">F150</option>
+<option value="Forrestor">Forrestor</option>
+<option value="Fusion">Fusion</option>
+<option value="Grand Cherokee">Grand Cherokee</option>
+<option value="Highlander">Highlander</option>
+<option value="Impreza">Impreza</option>
+<option value="Jetta">Jetta</option>
+<option value="Legacy">Legacy</option>
+<option value="M5">M5</option>
+<option value="MDX">MDX</option>
+<option value="ML350">ML350</option>
+<option value="Malibu">Malibu</option>
+<option value="Maxima">Maxima</option>
+<option value="Neon">Neon</option>
+<option value="Passat">Passat</option>
+<option value="Pathfinder">Pathfinder</option>
+<option value="RAM">RAM</option>
+<option value="RSX">RSX</option>
+<option value="Silverado">Silverado</option>
+<option value="TL">TL</option>
+<option value="Tahoe">Tahoe</option>
+<option value="Ultima">Ultima</option>
+<option value="Wrangler">Wrangler</option>
+<option value="X5">X5</option>
+<option value="X6">X6</option>
+
+
+    </select>
+
+</div>
+
+<div class="col-lg-6 col-md-6 mb-4">
+
+    <label class="form-label fw-semibold">
+        Auto Year
+    </label>
+
+    <input
+        type="number"
+        class="form-control"
+        name="auto_year"
+        min="1995"
+        max="2015"
+        step="any"
+        placeholder="Enter value (1995 - 2015)"
+        required>
+
+    <div class="form-text text-primary">
+        Allowed Range : 1995 — 2015
+    </div>
+
+</div>
+
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<div class="card shadow-sm mb-4">
+
+<div class="card-header bg-secondary text-white">
+
+<h5 class="mb-0">Other Features</h5>
+
+</div>
+
+<div class="card-body">
+
+<div class="row">
+
+
+<div class="col-lg-6 col-md-6 mb-4">
+
+    <label class="form-label fw-semibold">
+        Capital Gains
+    </label>
+
+    <input
+        type="number"
+        class="form-control"
+        name="capital-gains"
+        min="0"
+        max="100500"
+        step="any"
+        placeholder="Enter value (0 - 100500)"
+        required>
+
+    <div class="form-text text-primary">
+        Allowed Range : 0 — 100500
+    </div>
+
+</div>
+
+<div class="col-lg-6 col-md-6 mb-4">
+
+    <label class="form-label fw-semibold">
+        Capital Loss
+    </label>
+
+    <input
+        type="number"
+        class="form-control"
+        name="capital-loss"
+        min="-111100"
+        max="0"
+        step="any"
+        placeholder="Enter value (-111100 - 0)"
+        required>
+
+    <div class="form-text text-primary">
+        Allowed Range : -111100 — 0
+    </div>
+
+</div>
+
+
+</div>
+
+</div>
+
+</div>
+

@@ -1,0 +1,15 @@
+artifact_uri: file:///E:/Udemy/Project%204/Insurance%20Fraud%20Detection/mlruns/955819603884571367/5e9ea3cc334c40b684c8ac30799c8139/artifacts
+end_time: 1784053956544
+entry_point_name: ''
+experiment_id: '955819603884571367'
+lifecycle_stage: active
+run_id: 5e9ea3cc334c40b684c8ac30799c8139
+run_name: exultant-stork-264
+run_uuid: 5e9ea3cc334c40b684c8ac30799c8139
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1784053948386
+status: 3
+tags: []
+user_id: asus

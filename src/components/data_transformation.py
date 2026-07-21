@@ -15,6 +15,7 @@ from scipy.stats import ks_2samp
 from sklearn.compose import ColumnTransformer
 from sklearn.preprocessing import OneHotEncoder, OrdinalEncoder, StandardScaler
 from sklearn.pipeline import Pipeline
+from src.utils.main_utils.form_generator import generate_html_form
 
 class DataTransformation:
   
@@ -153,6 +154,7 @@ class DataTransformation:
             
         except Exception as e:
             raise CustomException(e,sys)
+
             
     
     def initiate_data_transformation(self)-> DataTransformationArtifact:
@@ -168,10 +170,36 @@ class DataTransformation:
             train_df = self.dropping_unwanted_columns(train_df, DATA_TRANSFORMATION_DROPPING_COLUMNS)
             test_df = self.dropping_unwanted_columns(test_df, DATA_TRANSFORMATION_DROPPING_COLUMNS)
 
+
             logging.info("Imputing the missing values in Train and Test")
             train_df = self.imputing_missing_values(train_df,DATA_TRANSFORMATION_IMPUTATION_COLUMNS)
             test_df = self.imputing_missing_values(test_df,DATA_TRANSFORMATION_IMPUTATION_COLUMNS)
-            logging.info("Missing values successfully imputed.")
+
+            logging.info("========== Dataset Summary ==========")
+
+            for col in train_df.columns:
+
+                logging.info(
+                    "Column: %-30s | Type: %-10s | Missing: %-3d | Unique: %-4d",
+                    col,
+                    train_df[col].dtype,
+                    train_df[col].isnull().sum(),
+                    train_df[col].nunique()
+                )
+
+                if train_df[col].dtype == "object":
+                    logging.info("Categories: %s", train_df[col].unique())
+                else:
+                    logging.info(
+                        "Min: %s | Max: %s | Mean: %.2f",
+                        train_df[col].min(),
+                        train_df[col].max(),
+                        train_df[col].mean()
+                    )
+
+            logging.info("=====================================")
+
+            generate_html_form(df=train_df,target_column=TARGET_COLUMN)
 
             status = True
             transformed_train_file_path = None
