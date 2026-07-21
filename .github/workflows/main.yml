@@ -91,15 +91,15 @@ jobs:
 
       - name: Stop Existing Container
         run: |
-          docker stop networksecurity || true
-          docker rm networksecurity || true
+          docker stop insurancefraud || true
+          docker rm insurancefraud || true
 
       - name: Run Docker Container
         run: |
           docker run -d \
-            --name networksecurity \
+            --name insurancefraud \
             --restart unless-stopped \
-            -p 8080:8080 \            
+            -p 8080:8000 \
             ${{ steps.login-ecr.outputs.registry }}/${{ secrets.ECR_REPOSITORY_NAME }}:latest
 
       - name: Cleanup Docker
